@@ -1068,6 +1068,7 @@
     LOGBIT(OPTFLOW)         | \
     LOGBIT(PID)             | \
     LOGBIT(COMPASS)         | \
+    LOGBIT(ANALOG)	    | \
     LOGBIT(INAV)
 
 //////////////////////////////////////////////////////////////////////////////

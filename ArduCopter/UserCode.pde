@@ -1,10 +1,13 @@
-/// -*- tab-width: 4; Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil -*-
+                                /// -*- tab-width: 4; Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil -*-
 
 #ifdef USERHOOK_INIT
 void userhook_init()
 {
     // put your initialisation code here
     // this will be called once at start-up
+    
+    //Define Pin for Analog Read
+    mp = hal.analogin->channel(7);
 }
 #endif
 
@@ -40,5 +43,11 @@ void userhook_SlowLoop()
 void userhook_SuperSlowLoop()
 {
     // put your 1Hz code here
+    
+    // Print Analog Sensor to telemetry (Xbee/USB)
+    hal.console->println(mp->voltage_average());
+    // Print Analog Sensor to DataFlash log
+    Log_Write_Analog(mp->voltage_average());
+    
 }
 #endif

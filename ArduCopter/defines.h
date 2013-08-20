@@ -291,6 +291,7 @@ enum ap_message {
 #define LOG_DATA_INT32_MSG              0x16
 #define LOG_DATA_UINT32_MSG             0x17
 #define LOG_DATA_FLOAT_MSG              0x18
+#define LOG_DATA_ANALOG_MSG		0x19
 #define LOG_INDEX_MSG                   0xF0
 #define MAX_NUM_LOGS                    50
 
@@ -300,7 +301,7 @@ enum ap_message {
 #define MASK_LOG_PM                     (1<<3)
 #define MASK_LOG_CTUN                   (1<<4)
 #define MASK_LOG_NTUN                   (1<<5)
-#define MASK_LOG_MODE                   (1<<6)  // not used
+//#define MASK_LOG_MODE                   (1<<6)  // not used
 #define MASK_LOG_IMU                    (1<<7)
 #define MASK_LOG_CMD                    (1<<8)
 #define MASK_LOG_CURRENT                (1<<9)
@@ -310,6 +311,7 @@ enum ap_message {
 #define MASK_LOG_COMPASS                (1<<13)
 #define MASK_LOG_INAV                   (1<<14)
 #define MASK_LOG_CAMERA                 (1<<15)
+#define MASK_LOG_ANALOG			(1<<6)
 
 // DATA - event logging
 #define DATA_MAVLINK_FLOAT              1

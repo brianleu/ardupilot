@@ -49,6 +49,7 @@ print_log_menu(void)
         if (g.log_bitmask & MASK_LOG_COMPASS) cliSerial->printf_P(PSTR(" COMPASS"));
         if (g.log_bitmask & MASK_LOG_INAV) cliSerial->printf_P(PSTR(" INAV"));
         if (g.log_bitmask & MASK_LOG_CAMERA) cliSerial->printf_P(PSTR(" CAMERA"));
+	if (g.log_bitmask & MASK_LOG_ANALOG) cliSerial->printf_P(PSTR(" ANALOG"));
     }
 
     cliSerial->println();
@@ -131,7 +132,7 @@ select_logs(uint8_t argc, const Menu::arg *argv)
         TARG(PM);
         TARG(CTUN);
         TARG(NTUN);
-        TARG(MODE);
+//        TARG(MODE); //MODE is not used, replaced with ANALOG
         TARG(IMU);
         TARG(CMD);
         TARG(CURRENT);
@@ -141,6 +142,7 @@ select_logs(uint8_t argc, const Menu::arg *argv)
         TARG(COMPASS);
         TARG(INAV);
         TARG(CAMERA);
+	TARG(ANALOG);
  #undef TARG
     }
 
@@ -798,6 +800,8 @@ static const struct LogStructure log_structure[] PROGMEM = {
       "CAM",   "ILLeccC",    "GPSTime,Lat,Lng,Alt,Roll,Pitch,Yaw" },
     { LOG_ERROR_MSG, sizeof(log_Error),         
       "ERR",   "BB",         "Subsys,ECode" },
+    { LOG_ANALOG_MSG, sizeof(log_Analog),
+      "ANA",   "f",          "Voltage" },
 };
 
 // Read the DataFlash log memory

@@ -6,6 +6,28 @@
 // variables
 #ifdef USERHOOK_VARIABLES
 
+// Analog Input
+static AP_HAL::AnalogSource *mp;
+
+// DataFlash Writing
+# define LOG_ANALOG                    ENABLED
+
+// Analog sensor data packet
+struct PACKED log_Analog {
+    LOG_PACKET_HEADER;
+    float voltage;
+};
+
+// Write a analog sensor packet
+static void Log_Write_Analog(float voltage)
+{
+    struct log_Analog pkt = {
+        LOG_PACKET_HEADER_INIT(LOG_MODE_MSG),
+        voltage            : voltage,
+    };
+    DataFlash.WriteBlock(&pkt, sizeof(pkt));
+}
+
 #if WII_CAMERA == 1
 WiiCamera           ircam;
 int                 WiiRange=0;
